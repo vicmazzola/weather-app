@@ -9,7 +9,7 @@ function App() {
 
     const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
-    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}`;
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`;
 
     const searchLocation = async (event) => {
         if (event.key === "Enter") {
