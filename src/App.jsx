@@ -38,11 +38,11 @@ function App() {
             <div className="text-center p-4">
                 <input
                     type="text"
-                    className="py-3 px-6 w-[700px] text-lg rounded-3xl border border-gray-200 text-gray-600 placeholder:text-gray-400 focus:outline-none bg-white-600/100 shadow-md"
+                    className="py-3 px-4 md:px-6 w-full md:w-[700px] text-lg rounded-3xl border shadow-md"
                     placeholder="Enter location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    onKeyDown={searchLocation} // Adjusted for simplicity
+                    onKeyDown={searchLocation}
                 />
             </div>
             <Weather weatherData={data}/>
