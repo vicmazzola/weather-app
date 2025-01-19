@@ -2,23 +2,36 @@ const Weather = ({weatherData}) => {
 
     if (!weatherData.weather) return null;
 
-    const { name, sys, weather, main, wind } = weatherData;
-    const [{ icon, description }] = weather;
-
+    const {name, sys, weather, main, wind} = weatherData;
+    const [{icon, description}] = weather;
+    console.log("Icon:", icon);
     return (
-        <div className="w-auto max-w-[400px] bg-gray-300 shadow-lg rounded-xl mx-auto p-6">
+        <div className="w-auto max-w-[400px] bg-white/90 text-gray-800 shadow-lg rounded-xl mx-auto p-6 mt-8">
             <div className="text-center">
-                <p className="text-xl">{name}, {sys.country}</p>
-                <p className="text-sm">{description}</p>
-                <h1 className="text-5xl font-semibold">{main.temp.toFixed()} ºC</h1>
+                <p className="text-2xl font-semibold">{name}, {sys.country}</p>
+                <p className="text-sm text-gray-600 capitalize">{description}</p>
+                <h1 className="text-6xl font-bold my-4">{main.temp.toFixed()} ºC</h1>
             </div>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
-                <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="icon" className="w-[100px] md:w-[120px]" />
-                <div className="text-xs">
-                    <p>Feels Like: {main.feels_like.toFixed()} ºC</p>
-                    <p>Humidity: {main.humidity}%</p>
-                    <p>Wind Speed: {wind.speed.toFixed()} KPH</p>
-                    <p>Pressure: {main.pressure} hPa</p>
+            <div className="w-auto max-w-[400px] bg-white/90 text-gray-800 shadow-lg rounded-xl mx-auto p-8 mt-8">
+                <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="Weather Icon"
+                     className="w-[120px]"/>
+                <div className="text-sm">
+                    <div className="flex justify-between">
+                    <span className="font-medium">Feels Like:</span>
+                        <span>{main.feels_like.toFixed()} ºC</span>
+                    </div>
+                    <div className="flex justify-between">
+                        <span className="font-medium">Humidity:</span>
+                        <span>{main.humidity}%</span>
+                    </div>
+                    <div className="flex justify-between">
+                        <span className="font-medium">Wind Speed: </span>
+                        <span>{wind.speed.toFixed()} KPH</span>
+                    </div>
+                    <div className="flex justify-between">
+                        <span className="font-medium">Pressure:</span>
+                        <span>{main.pressure} hPa</span>
+                    </div>
                 </div>
             </div>
         </div>

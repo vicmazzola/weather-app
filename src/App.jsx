@@ -29,21 +29,22 @@ function App() {
                     console.error("Error fetching data:", error.message);
                 }
             }
-            setLocation(""); // Clear input field
+            setLocation("");
         }
     };
 
     return (
-        <div className="w-full h-full relative">
-            <div className="text-center p-4">
+        <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 text-gray-100">
+            <div className="text-center p-6">
                 <input
                     type="text"
-                    className="py-3 px-4 md:px-6 w-full md:w-[700px] text-lg rounded-3xl border shadow-md"
+                    className="py-3 px-4 md:px-6 w-full max-w-md text-lg text-black rounded-3xl border shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     placeholder="Enter location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     onKeyDown={searchLocation}
                 />
+
             </div>
             <Weather weatherData={data}/>
         </div>
