@@ -10,7 +10,16 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.vite
 *.local
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+#Tailwind CSS Output
+src/output.css
 
 # Editor directories and files
 .vscode/*
