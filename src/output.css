@@ -608,12 +608,20 @@ video {
   width: 50%;
 }
 
+.w-\[120px\] {
+  width: 120px;
+}
+
 .flex-col {
   flex-direction: column;
 }
 
 .items-start {
   align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
