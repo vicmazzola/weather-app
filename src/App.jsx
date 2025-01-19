@@ -7,7 +7,7 @@ function App() {
     const [data, setData] = useState({});
     const [location, setLocation] = useState("");
 
-    const API_KEY = process.env.VITE_WEATHER_API_KEY;
+    const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
     const url = `http://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}`;
 
