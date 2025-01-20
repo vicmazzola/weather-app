@@ -1,6 +1,8 @@
 import './App.css';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
 import Weather from "./components/Weather.jsx";
 import RecentSearches from "./components/RecentSearches.jsx";
 
@@ -29,29 +31,33 @@ function App() {
         localStorage.setItem("recentSearches", JSON.stringify(newSearches));
     };
 
-    const searchLocation = async (event) => {
-        if (event.key === "Enter") {
-            if (!location.trim()) {
-                console.error("Location cannot be empty");
-                return;
-            }
-            try {
-                const response = await axios.get(url);
-                setData(response.data);
-                saveToLocalStorage(location);
-            } catch (error) {
-                console.error("Error fetching data:", error.message);
-            }
-            setLocation("");
+    const searchLocation = async (manualLocation = null) => {
+        const searchValue = manualLocation || location;
+        if (!searchValue.trim()) {
+            console.error("Location cannot be empty");
+            return;
         }
+        try {
+            const response = await axios.get(
+                `http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=${API_KEY}`
+            );
+            setData(response.data);
+            saveToLocalStorage(searchValue);
+        } catch (error) {
+            console.error("Error fetching data:", error.message);
+        }
+        setLocation("");
     };
 
+
     const handleRecentSelect = (selectedLocation) => {
-        setLocation(selectedLocation);
+        searchLocation(selectedLocation);
     };
+
 
     return (
         <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 ">
+            <Header/>
             <div className="text-center p-6">
                 <input
                     type="text"
@@ -59,7 +65,7 @@ function App() {
                     placeholder="Enter location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    onKeyDown={searchLocation}
+                    onKeyDown={(e) => e.key === "Enter" && searchLocation()}
                 />
             </div>
             <Weather weatherData={data} />
@@ -68,6 +74,8 @@ function App() {
                 onSelectLocation={handleRecentSelect}
                 updateSearches={updateSearches}
             />
+            <Footer/>
+
         </div>
     );
 }
