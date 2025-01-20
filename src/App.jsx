@@ -37,7 +37,7 @@ function App() {
         }
         try {
             const response = await axios.get(
-                `http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=${API_KEY}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=${API_KEY}`
             );
             setData(response.data);
             saveToLocalStorage(searchValue);
@@ -51,6 +51,7 @@ function App() {
     const handleRecentSelect = (selectedLocation) => {
         searchLocation(selectedLocation);
     };
+    console.log("API Key from env:", import.meta.env.VITE_WEATHER_API_KEY);
 
 
     return (
