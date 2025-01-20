@@ -1,8 +1,54 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Weather App
 
-Currently, two official plugins are available:
+This is a simple and elegant weather app built with **React**, **Vite**, and **Axios**.  
+It utilizes the **OpenWeather API** to fetch real-time weather data and includes **Progressive Web App (PWA)** features such as installability.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+## Features
+- Fetches real-time weather data using **Axios** and **OpenWeather API**.
+- Displays detailed weather information, including temperature, humidity, wind speed, and more.
+- Recent searches are stored in **localStorage** for quick access.
+- Fully responsive design built with **Tailwind CSS**.
+- Includes **PWA functionality**, allowing the app to be installed on your device.
+- Deployed with **Vercel** for fast and reliable hosting.
+
+---
+
+## Live Demo
+Check out the live version of the app here: [Weather App](https://weather-app-ten-nu-10.vercel.app/)
+
+---
+
+## Technologies Used
+- **React**: Component-based UI development.
+- **Vite**: Fast and optimized build tool.
+- **Axios**: HTTP client for making API requests.
+- **OpenWeather API**: Provides real-time weather data.
+- **Tailwind CSS**: Utility-first CSS framework for responsive and modern styling.
+- **PWA**: Enables app installability.
+
+---
+
+## Installation
+To run this project locally:
+
+1. Clone the repository and navigate to the project directory:
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
+
+2. Install dependencies:
+```
+npm install
+```
+3. Start the development server:
+```
+npm run dev
+```
+
+
+## 🚀 Deployment
+The project was deployed using **Vercel**, ensuring fast and reliable hosting.
