@@ -9,12 +9,12 @@ const RecentSearches = ({ recentSearches, onSelectLocation, updateSearches }) =>
     };
 
     return (
-        <div className="w-[90%] max-w-md mx-auto mt-6 bg-white/90 rounded-lg shadow-lg p-4">
+        <div className="w-[90%] max-w-md mx-auto mt-8 bg-white/90 rounded-lg shadow-lg p-6">
             <div className="flex justify-between items-center mb-3">
                 <h3 className="text-xl font-semibold">Recent Searches</h3>
                 {recentSearches.length > 0 && (
                     <button
-                        className="text-sm text-red-500 hover:text-red-700"
+                        className="text-sm px-4 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition duration-300"
                         onClick={clearAllSearches}
                     >
                         Clear All
@@ -34,9 +34,10 @@ const RecentSearches = ({ recentSearches, onSelectLocation, updateSearches }) =>
                             {location}
                         </span>
                         <button
-                            className="text-red-500 hover:text-red-700"
+                            className="text-white bg-red-500 rounded-full p-2 px-4 shadow hover:bg-red-600 transition duration-300"
                             onClick={() => handleDelete(location)}
                         >
+
                             ✕
                         </button>
                     </li>

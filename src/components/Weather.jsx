@@ -5,7 +5,7 @@ const Weather = ({weatherData}) => {
     const {name, sys, weather, main, wind} = weatherData;
     const [{icon, description}] = weather;
     return (
-        <div className="w-auto max-w-[400px] bg-white/90 text-gray-800 shadow-lg rounded-xl mx-auto p-6 mt-8">
+        <div className="w-auto max-w-[400px] bg-white/90 text-gray-800 shadow-lg rounded-xl mx-auto p-6 mt-6">
             <div className="text-center">
                 <p className="text-2xl font-semibold">{name}, {sys.country}</p>
                 <p className="text-sm text-gray-600 capitalize">{description}</p>
