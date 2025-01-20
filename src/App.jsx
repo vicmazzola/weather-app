@@ -51,7 +51,6 @@ function App() {
     const handleRecentSelect = (selectedLocation) => {
         searchLocation(selectedLocation);
     };
-    console.log("API Key from env:", import.meta.env.VITE_WEATHER_API_KEY);
 
 
     return (
