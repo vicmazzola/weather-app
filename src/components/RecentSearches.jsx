@@ -1,13 +1,26 @@
-const RecentSearches = ({ recentSearches, onSelectLocation }) => {
+const RecentSearches = ({ recentSearches, onSelectLocation, updateSearches }) => {
     const handleDelete = (location) => {
         const updatedSearches = recentSearches.filter((search) => search !== location);
-        localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
-        onSelectLocation(""); // Optionally clear the selected location
+        updateSearches(updatedSearches);
+    };
+
+    const clearAllSearches = () => {
+        updateSearches([]);
     };
 
     return (
-        <div className="w-full max-w-md mx-auto mt-4 bg-white/90 rounded-lg shadow-lg p-4">
-            <h3 className="text-xl font-semibold mb-3 text-center">Recent Searches</h3>
+        <div className="w-[90%] max-w-md mx-auto mt-6 bg-white/90 rounded-lg shadow-lg p-4">
+            <div className="flex justify-between items-center mb-3">
+                <h3 className="text-xl font-semibold">Recent Searches</h3>
+                {recentSearches.length > 0 && (
+                    <button
+                        className="text-sm text-red-500 hover:text-red-700"
+                        onClick={clearAllSearches}
+                    >
+                        Clear All
+                    </button>
+                )}
+            </div>
             <ul className="space-y-2">
                 {recentSearches.map((location, index) => (
                     <li

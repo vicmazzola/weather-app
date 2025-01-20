@@ -19,9 +19,14 @@ function App() {
     }, []);
 
     const saveToLocalStorage = (location) => {
-        const updatedSearches = [location, ...recentSearches.filter((item) => item !== location)].slice(0, 5); // Ensure no duplicates, limit to 5
+        const updatedSearches = [location, ...recentSearches.filter((item) => item !== location)].slice(0, 5);
         setRecentSearches(updatedSearches);
         localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
+    };
+
+    const updateSearches = (newSearches) => {
+        setRecentSearches(newSearches);
+        localStorage.setItem("recentSearches", JSON.stringify(newSearches));
     };
 
     const searchLocation = async (event) => {
@@ -46,7 +51,7 @@ function App() {
     };
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 text-gray-100">
+        <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 ">
             <div className="text-center p-6">
                 <input
                     type="text"
@@ -61,6 +66,7 @@ function App() {
             <RecentSearches
                 recentSearches={recentSearches}
                 onSelectLocation={handleRecentSelect}
+                updateSearches={updateSearches}
             />
         </div>
     );
