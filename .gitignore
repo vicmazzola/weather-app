@@ -19,7 +19,7 @@ dist-ssr
 .env.*.local
 
 #Tailwind CSS Output
-src/output.css
+public/output.css
 
 # Editor directories and files
 .vscode/*
