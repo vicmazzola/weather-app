@@ -54,9 +54,10 @@ function App() {
 
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 ">
+        <div
+            className="flex flex-col items-center min-h-screen bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 ">
             <Header/>
-            <div className="text-center p-6">
+            <div className="flex items-center justify-center gap-2 p-6">
                 <input
                     type="text"
                     className="py-3 px-4 md:px-6 w-full max-w-md text-lg text-black rounded-3xl border shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -65,8 +66,15 @@ function App() {
                     onChange={(e) => setLocation(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && searchLocation()}
                 />
+                <button
+                    className="px-4 py-3 bg-blue-600 text-white rounded-3xl shadow hover:bg-blue-700 transition duration-300"
+                    onClick={() => searchLocation()}
+                >
+                    Search
+                </button>
             </div>
-            <Weather weatherData={data} />
+
+            <Weather weatherData={data}/>
             <RecentSearches
                 recentSearches={recentSearches}
                 onSelectLocation={handleRecentSelect}
