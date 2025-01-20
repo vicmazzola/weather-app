@@ -4,7 +4,6 @@ const Weather = ({weatherData}) => {
 
     const {name, sys, weather, main, wind} = weatherData;
     const [{icon, description}] = weather;
-    console.log("Icon:", icon);
     return (
         <div className="w-auto max-w-[400px] bg-white/90 text-gray-800 shadow-lg rounded-xl mx-auto p-6 mt-8">
             <div className="text-center">
@@ -14,7 +13,7 @@ const Weather = ({weatherData}) => {
             </div>
             <div className="w-auto max-w-[400px] bg-white/90 text-gray-800 shadow-lg rounded-xl mx-auto p-8 mt-8">
                 <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="Weather Icon"
-                     className="w-[120px]"/>
+                     className="w-32 h-32 object-contain filter-none"/>
                 <div className="text-sm">
                     <div className="flex justify-between">
                     <span className="font-medium">Feels Like:</span>

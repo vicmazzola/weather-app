@@ -1,15 +1,28 @@
 import './App.css';
-import {useState} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Weather from "./components/Weather.jsx";
+import RecentSearches from "./components/RecentSearches.jsx";
 
 function App() {
     const [data, setData] = useState({});
     const [location, setLocation] = useState("");
+    const [recentSearches, setRecentSearches] = useState([]);
 
     const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`;
+
+    useEffect(() => {
+        const savedSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+        setRecentSearches(savedSearches);
+    }, []);
+
+    const saveToLocalStorage = (location) => {
+        const updatedSearches = [location, ...recentSearches.filter((item) => item !== location)].slice(0, 5); // Ensure no duplicates, limit to 5
+        setRecentSearches(updatedSearches);
+        localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
+    };
 
     const searchLocation = async (event) => {
         if (event.key === "Enter") {
@@ -18,19 +31,18 @@ function App() {
                 return;
             }
             try {
-                console.log("Fetching weather data...");
                 const response = await axios.get(url);
                 setData(response.data);
-                console.log("API Response:", response.data);
+                saveToLocalStorage(location);
             } catch (error) {
-                if (error.response?.status === 429) {
-                    console.error("API call limit exceeded. Please wait before making another request.");
-                } else {
-                    console.error("Error fetching data:", error.message);
-                }
+                console.error("Error fetching data:", error.message);
             }
             setLocation("");
         }
+    };
+
+    const handleRecentSelect = (selectedLocation) => {
+        setLocation(selectedLocation);
     };
 
     return (
@@ -44,9 +56,12 @@ function App() {
                     onChange={(e) => setLocation(e.target.value)}
                     onKeyDown={searchLocation}
                 />
-
             </div>
-            <Weather weatherData={data}/>
+            <Weather weatherData={data} />
+            <RecentSearches
+                recentSearches={recentSearches}
+                onSelectLocation={handleRecentSelect}
+            />
         </div>
     );
 }
